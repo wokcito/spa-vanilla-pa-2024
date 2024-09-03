@@ -1,22 +1,22 @@
+import Header from "../templates/Header";
 import getData from "../utils/getData"
+import Character from "./Character"
 
 const Home =  async () => {
 
     const characters = await getData();
-    console.log(characters)
 
     const view = `
-    <div class="Characters">
-        <article class="Character-item">
-            <a href="#/1/">
-                <img src="image" alt="name">
-                <h2>Name</h2>
-            </a>
-        </article>  
-    </div>
+        ${await Header()}
+        <div class="Characters">
+            ${characters
+                .map(Character)
+                .join('')
+            }
+        </div>
     `
+
     return view
-    
 }
 
 export default Home
